@@ -1,5 +1,8 @@
 # Presonus IO24 Python Control Library
 
+[![CI](https://github.com/pdmurray/presonus_ctrl/actions/workflows/ci.yml/badge.svg)](https://github.com/pdmurray/presonus_ctrl/actions/workflows/ci.yml)
+[![Release](https://github.com/pdmurray/presonus_ctrl/actions/workflows/release.yml/badge.svg)](https://github.com/pdmurray/presonus_ctrl/actions/workflows/release.yml)
+
 A Python library for controlling the Presonus Revelator IO24 audio interface via USB.
 
 ## Status
@@ -500,6 +503,7 @@ except PresonusUSBError as exc:
 - `docs/protocol/LINUX_PROBING_NOTES.md`
 - `docs/protocol/CAPTURE_GUIDE.md`
 - `docs/protocol/PROTOCOL_DISCOVERY.md`
+- `docs/PUBLISHING.md`
 
 ## License
 
