@@ -1,0 +1,11 @@
+# Presonus IO24 Control Utility Dependencies
+#
+# Install with: pip install -r requirements.txt
+#
+# Network issues during setup? 
+# Option 1: pip install --break-system-packages scapy click pyusb
+# Option 2: Install from Arch repos: sudo pacman -S python-scapy python-click python-pyusb
+
+click>=8.0.0
+pyusb>=1.2.0
+scapy>=2.5.0

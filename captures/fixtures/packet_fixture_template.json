@@ -1,0 +1,15 @@
+{
+  "name": "channel-mute-on-example",
+  "status": "verified",
+  "capture_file": "raw/example-capture.pcapng",
+  "action": "Mute channel 1",
+  "packet_numbers": [101, 102],
+  "request_hex": "020125010001",
+  "response_hex": "030001000000000000",
+  "decoded": {
+    "command_family": "channel_mute",
+    "channel": 1,
+    "value": true
+  },
+  "notes": "Replace this template with real capture-backed values."
+}

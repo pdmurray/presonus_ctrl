@@ -1,0 +1,15 @@
+# Presonus Revelator IO24 - USB access rules
+#
+# Installation:
+#   sudo cp 99-presonus-io24.rules /etc/udev/rules.d/
+#   sudo udevadm control --reload-rules
+#   sudo udevadm trigger
+#
+# On modern desktop Linux systems, TAG+="uaccess" is usually enough to grant
+# the logged-in local user access to the device.
+#
+# Verify after installation:
+#   ls -l /dev/bus/usb/...  # Permissions should update after replug or trigger
+
+# Presonus Revelator IO24 (vendor 194f, product 0422)
+SUBSYSTEM=="usb", ATTR{idVendor}=="194f", ATTR{idProduct}=="0422", MODE="0666", TAG+="uaccess"
