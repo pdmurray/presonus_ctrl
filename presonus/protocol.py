@@ -5,11 +5,10 @@ The actual USB communication needs to be reverse-engineered from
 the device behavior.
 """
 
-from dataclasses import dataclass, field
-from typing import Optional, List, Any
-from enum import IntEnum
 import struct
-import binascii
+from dataclasses import dataclass, field
+from enum import IntEnum
+from typing import List, Optional
 
 
 class ProtocolCommand(IntEnum):
@@ -156,7 +155,6 @@ class VolumeMessage:
     @staticmethod
     def encode_db_to_raw(db: float) -> int:
         """Convert dB to raw value (0-1023)."""
-        import math
         if db <= -96:
             return 0
         elif db >= 0:

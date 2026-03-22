@@ -246,6 +246,16 @@ keywords, console entry point, project URLs). The main remaining publishing
 task is to replace placeholder maintainer/author details with the final public
 package metadata you want to publish.
 
+Current release automation:
+
+- CI runs tests, lint, and package-build verification on GitHub Actions
+- tagged releases (`v*`) build sdist/wheel artifacts and attach them to a GitHub release
+
+Planned later, when ready:
+
+- PyPI publishing from tagged releases, ideally via trusted publishing
+- AUR packaging and update automation once the package format and user workflow stabilize
+
 ### Install Dependencies Only
 
 If you only want the low-level Python dependency manually:

@@ -58,6 +58,7 @@ Issues = "https://github.com/pdmurray/presonus_ctrl/issues"
 dev = [
     "pytest>=7.0.0",
     "pytest-cov>=4.0.0",
+    "ruff>=0.8.0",
 ]
 
 [project.scripts]
@@ -70,3 +71,14 @@ include = ["presonus*", "cli*"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["."]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*.py" = ["E402"]

@@ -1,17 +1,16 @@
 """CLI main module for Presonus IO24 control."""
 
-import click
-from typing import Any, Optional
 import sys
 import time
 from datetime import datetime
 from pathlib import Path
+from typing import Any
 
+import click
 import usb.core
 import usb.util
 
-from presonus import PresonusDevice, PresonusUSBError, PresetType, ProtocolDiscovery
-from presonus.models import IO24State, ChannelSettings
+from presonus import PresetType, PresonusDevice, PresonusUSBError
 
 
 def _slugify(value: str) -> str:
@@ -59,7 +58,7 @@ def info():
                 devices = device.find_devices()
                 if devices:
                     d = devices[0]
-                    click.echo(f"Device found:")
+                    click.echo("Device found:")
                     click.echo(f"  Vendor ID:      0x{d.idVendor:04x}")
                     click.echo(f"  Product ID:     0x{d.idProduct:04x}")
                     click.echo(f"  Product Name:   {d.product or 'Unknown'}")
@@ -251,7 +250,7 @@ def monitor_endpoint(
 def list_channels():
     """List all channels and their current settings."""
     try:
-        with PresonusDevice() as device:
+        with PresonusDevice():
             # TODO: This will be implemented after protocol discovery
             click.echo("Channel listing not yet implemented. See PROTOCOL_DISCOVERY.md")
             # After implementation:
@@ -295,7 +294,7 @@ def set_channel(channel: int, level: float, mute: bool, fader: float):
         sys.exit(1)
     
     try:
-        with PresonusDevice() as device:
+        with PresonusDevice():
             click.echo(f"Setting channel {channel} parameters...")
             # TODO: Implement parameter setting after protocol discovery
     except PresonusUSBError as e:
@@ -319,7 +318,7 @@ def get(channel: int, param: str):
         sys.exit(1)
     
     try:
-        with PresonusDevice() as device:
+        with PresonusDevice():
             # TODO: Implement parameter query
             click.echo(f"Getting {param} from channel {channel}...")
             # After implementation:
@@ -366,7 +365,7 @@ def fader(channel: int, value: float):
         sys.exit(1)
     
     try:
-        with PresonusDevice() as device:
+        with PresonusDevice():
             # TODO: Implement fader set
             click.echo(f"Setting channel {channel} fader to {value:.1f} dB...")
             # After implementation:
@@ -401,7 +400,7 @@ def fat_channel(channel: int, compressor: str, gate: str, eq: str):
         sys.exit(1)
     
     try:
-        with PresonusDevice() as device:
+        with PresonusDevice():
             click.echo(f"Adjusting fat channel settings for channel {channel}...")
             # TODO: Implement fat channel control after protocol discovery
     except PresonusUSBError as e:
@@ -440,7 +439,7 @@ def preset(channel: int, preset_name: str):
         sys.exit(1)
     
     try:
-        with PresonusDevice() as device:
+        with PresonusDevice():
             # TODO: Implement preset load
             click.echo(f"Loading preset '{preset_name}' on channel {channel}...")
             # After implementation:
@@ -460,7 +459,7 @@ def preset(channel: int, preset_name: str):
 def levels():
     """Show all levels and gains for all channels."""
     try:
-        with PresonusDevice() as device:
+        with PresonusDevice():
             # TODO: Implement batch levels query
             click.echo("Level display not yet implemented. See PROTOCOL_DISCOVERY.md")
     except PresonusUSBError as e:
@@ -485,7 +484,7 @@ def monitor(channel: int):
     click.echo(f"Monitoring channel {channel}... Press Ctrl+C to stop")
     
     try:
-        with PresonusDevice() as device:
+        with PresonusDevice():
             # TODO: Implement continuous monitoring
             # This would involve periodic polling and diffing
             while True:

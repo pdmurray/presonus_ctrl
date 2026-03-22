@@ -1,0 +1,92 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Upgrade pip
+        run: python -m pip install --upgrade pip
+
+      - name: Install lint dependencies
+        run: python -m pip install -e .[dev]
+
+      - name: Run Ruff
+        run: ruff check presonus cli
+
+  tests:
+    name: Tests (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Upgrade pip
+        run: python -m pip install --upgrade pip
+
+      - name: Install project and test dependencies
+        run: python -m pip install -e .[dev]
+
+      - name: Run test suite
+        run: python -m pytest tests/ -q
+
+      - name: CLI smoke test
+        run: presonus-io24 --help
+
+  package:
+    name: Package Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Upgrade pip
+        run: python -m pip install --upgrade pip
+
+      - name: Install packaging tools
+        run: python -m pip install build pipx
+
+      - name: Build sdist and wheel
+        run: python -m build
+
+      - name: Install wheel and smoke test console command
+        run: |
+          python -m pip install dist/*.whl
+          presonus-io24 --help
+
+      - name: pipx install smoke test
+        run: |
+          python -m pipx install --suffix=-ci .
+          presonus-io24-ci --help

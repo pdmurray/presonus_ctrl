@@ -1,16 +1,16 @@
 
 """Presonus Revelator IO24 control library."""
 
+from .capabilities import CapabilitySet
 from .device import PresonusDevice, PresonusUSBError
 from .models import (
+    ChannelSettings,
     DeviceInfo,
     FatChannelSettings,
-    ChannelSettings,
-    MasterSettings,
     IO24State,
+    MasterSettings,
     PresetType,
 )
-from .capabilities import CapabilitySet
 from .protocol import ProtocolDiscovery
 
 __all__ = [
