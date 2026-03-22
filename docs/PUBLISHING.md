@@ -59,6 +59,20 @@ That gives you stable checkpoints without pretending the hardware protocol is al
 
 Update the version in `pyproject.toml`.
 
+You can do this manually or use the helper:
+
+```bash
+python tools/prepare_release.py
+```
+
+Or non-interactively:
+
+```bash
+python tools/prepare_release.py --bump patch
+python tools/prepare_release.py --bump minor
+python tools/prepare_release.py --bump major
+```
+
 ### 2. Run Local Verification
 
 From the project root:
@@ -160,6 +174,22 @@ Confirm that the GitHub release contains:
 - the generated release notes
 - the `.tar.gz` source distribution
 - the `.whl` wheel distribution
+
+### Helper-Based Example
+
+For a typical patch release:
+
+```bash
+python tools/prepare_release.py --bump patch
+ruff check presonus cli
+python3 -m pytest tests/ -q
+python3 -m build
+git add pyproject.toml
+git commit -m "release: prepare v0.1.1"
+git push origin main
+git tag v0.1.1
+git push origin v0.1.1
+```
 
 ## First Release Recommendation
 
