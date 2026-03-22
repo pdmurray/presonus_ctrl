@@ -16,7 +16,7 @@ That means the library API is usable for development and test-driven iteration t
 For a local development checkout:
 
 ```bash
-git clone <repo-url>
+git clone git@github.com:pdmurray/presonus_ctrl.git
 cd presonus_ctrl
 python -m venv .venv
 source .venv/bin/activate
@@ -77,7 +77,7 @@ Today, those APIs are best understood as a stable compatibility surface while th
 Use this if you want to work on the codebase itself.
 
 ```bash
-git clone <repo-url>
+git clone git@github.com:pdmurray/presonus_ctrl.git
 cd presonus_ctrl
 python -m venv .venv
 source .venv/bin/activate
@@ -108,7 +108,7 @@ When to rerun `python -m pip install -e .`:
 Use this if you mainly want the CLI/library, not active development.
 
 ```bash
-git clone <repo-url>
+git clone git@github.com:pdmurray/presonus_ctrl.git
 cd presonus_ctrl
 python -m venv .venv
 source .venv/bin/activate
@@ -158,7 +158,7 @@ presonus-io24-local info
 When the package is eventually published, the intended user flow will be:
 
 ```bash
-pipx install presonus-io24
+pipx install git+https://github.com/pdmurray/presonus_ctrl.git
 presonus-io24 info
 ```
 
@@ -242,8 +242,9 @@ Likely future targets:
 An eventual AUR package would be a good fit once the protocol support and user workflow settle down further.
 
 Packaging metadata is now mostly in place for that path (`LICENSE`, classifiers,
-keywords, console entry point). The main remaining publishing task is to add
-real project URLs once the canonical repository/homepage location is finalized.
+keywords, console entry point, project URLs). The main remaining publishing
+task is to replace placeholder maintainer/author details with the final public
+package metadata you want to publish.
 
 ### Install Dependencies Only
 

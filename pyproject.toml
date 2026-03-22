@@ -11,7 +11,10 @@ requires-python = ">=3.8"
 license = "MIT"
 license-files = ["LICENSE"]
 authors = [
-    {name = "Developer", email = "dev@example.com"}
+    {name = "Patrick Murray", email = "pdmurray@gmail.com"}
+]
+maintainers = [
+    {name = "Patrick Murray", email = "pdmurray@gmail.com"}
 ]
 keywords = [
     "presonus",
@@ -45,6 +48,11 @@ dependencies = [
     "pyusb>=1.2.0",
     "click>=8.0.0",
 ]
+
+[project.urls]
+Homepage = "https://github.com/pdmurray/presonus_ctrl"
+Repository = "https://github.com/pdmurray/presonus_ctrl"
+Issues = "https://github.com/pdmurray/presonus_ctrl/issues"
 
 [project.optional-dependencies]
 dev = [
